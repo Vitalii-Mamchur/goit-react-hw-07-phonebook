@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "goit"
+    ],
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+}
