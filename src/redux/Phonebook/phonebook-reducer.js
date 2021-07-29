@@ -13,9 +13,9 @@ import {
   changeFilter,
 } from "./phonebook-actions";
 
-// const contacts = [];
+const contacts = [];
 
-const items = createReducer([], {
+const items = createReducer(contacts, {
   [fetchContactSuccess]: (_, { payload }) => payload,
   [addContactSuccess]: (state, { payload }) => {
     if (state.map((contact) => contact.name).includes(payload.name)) {
