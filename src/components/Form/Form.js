@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addContact } from "../../redux/Phonebook/phonebook-actions";
+import { addContact } from "../../redux/Phonebook/phonebook-operations";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./Form.module.css";
 

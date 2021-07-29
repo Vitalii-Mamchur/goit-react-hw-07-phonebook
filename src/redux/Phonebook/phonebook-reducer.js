@@ -1,19 +1,43 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
-import { addContact, deleteContact, changeFilter } from "./phonebook-actions";
-// import defaultContacts from "../../json/contacts.json";
+import {
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+  changeFilter,
+} from "./phonebook-actions";
 
-const contacts = [];
+// const contacts = [];
 
-const items = createReducer(contacts, {
-  [addContact]: (state, { payload }) => {
-    if (state.map((contact) => contact.name).includes(payload.name)) {
-      return alert(`${payload.name} is already exist`);
-    }
-    return [...state, payload];
-  },
-  [deleteContact]: (state, { payload }) =>
+const items = createReducer([], {
+  [fetchContactSuccess]: (_, { payload }) => payload,
+  [addContactSuccess]: (state, { payload }) => [...state, payload],
+  // [addContactSuccess]: (state, { payload }) => {
+  //   if (state.map((contact) => contact.name).includes(payload.name)) {
+  //     return alert(`${payload.name} is already exist`);
+  //   }
+  //   return [...state, payload];
+  // },
+  [deleteContactSuccess]: (state, { payload }) =>
     state.filter((contact) => contact.id !== payload),
+});
+
+const loading = createReducer(false, {
+  [fetchContactRequest]: () => true,
+  [fetchContactSuccess]: () => false,
+  [fetchContactError]: () => false,
+  [addContactRequest]: () => true,
+  [addContactSuccess]: () => false,
+  [addContactError]: () => false,
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
 });
 
 const filter = createReducer("", {
@@ -23,39 +47,5 @@ const filter = createReducer("", {
 export default combineReducers({
   items,
   filter,
+  loading,
 });
-
-/*--------------  without Redux Toolkit  ----------------------
-import { combineReducers } from "redux";
-import types from "./phonebook-types";
-import defaultContacts from "../../json/contacts.json";
-
-const initialState = defaultContacts;
-
-const items = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case types.ADD:
-      return [...state, payload];
-
-    case types.DELETE:
-      return state.filter((contact) => contact.id !== payload);
-    default:
-      return state;
-  }
-};
-
-const filter = (state = "", { type, payload }) => {
-  switch (type) {
-    case types.CHANGE_FILTER:
-      return payload;
-
-    default:
-      return state;
-  }
-};
-
-export default combineReducers({
-  items,
-  filter,
-});
-*/

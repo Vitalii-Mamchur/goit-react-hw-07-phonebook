@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "modern-normalize/modern-normalize.css";
 import Section from "./components/Section";
 import Form from "./components/Form";
 import Contacts from "./components/Contacts";
@@ -21,10 +19,5 @@ class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  contacts: PropTypes.array,
-  filter: PropTypes.string,
-};
 
 export default App;

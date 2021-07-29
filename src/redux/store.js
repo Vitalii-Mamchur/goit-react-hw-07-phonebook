@@ -1,28 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import contactsReducer from "./Phonebook/phonebook-reducer";
+
+const middleware = [...getDefaultMiddleware(), logger];
 
 const store = configureStore({
   reducer: {
     contacts: contactsReducer,
-    // middleware,
-    devTools: process.env.NODE_ENV === "development",
   },
+  middleware,
+  devTools: process.env.NODE_ENV === "development",
 });
 
 export default store;
-
-/*--------------  without Redux Toolkit  ----------------------
-import { createStore, combineReducers } from "redux";
-import contactsReducer from "./Phonebook/phonebook-reducer";
-
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-});
-
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-export default store;
-*/
