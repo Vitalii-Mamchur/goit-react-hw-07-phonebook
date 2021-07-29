@@ -1,13 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-// const addContact = createAction("contact/add", ({ name, number }) => ({
-//   payload: {
-//     id: uuidv4(),
-//     name,
-//     number,
-//   },
-// }));
-
 export const fetchContactRequest = createAction("contacts/fetchContactRequest");
 export const fetchContactSuccess = createAction("contacts/fetchContactSuccess");
 export const fetchContactError = createAction("contacts/fetchContactError");
